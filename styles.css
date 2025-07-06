@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --card-bg: white;
+    --pd-base: 30px;
+}
+
+.main {
+    padding: var(--pd-base);
+    text-align: center;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: auto-fit, minmax(250px, 1fr);
+    padding: var(--pd-base);
+}
+
+.card {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    background-color: var(--card-bg);
+    box-shadow: 0 1px 10px lightgray;
+
+    border-radius: 10px;
+    width: 250px;
+    height: 300px;
+}
