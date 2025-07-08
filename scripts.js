@@ -1,17 +1,21 @@
-const myLibrary = [
-    {id: 123456,
-      title: "The Hobbit",
-      author: "JK Rowling",
-      pages: 310,
-      read: "Yes",
-    },
-    {id: 112345,
-      title: "The Alchemist",
-      author: "Paulo Coelho",
-      pages: 210,
-      read: "No",
-    },
-];
+const myLibrary = [];
+
+// Dummy Data
+/*
+[
+  {id: 123456,
+    title: "The Hobbit",
+    author: "JK Rowling",
+    pages: 310,
+    read: "Yes",
+  },
+  {id: 112345,
+    title: "The Alchemist",
+    author: "Paulo Coelho",
+    pages: 210,
+    read: "No",
+  },
+] */
 
 function Book(title, author, pages, read){
     if(!new.target){
@@ -25,7 +29,11 @@ function Book(title, author, pages, read){
 }
 
 function addBookToLibrary(title, author, pages, read) {
-  // take params, create a book then store it in the array
+  // Create a new Book object
+  const book = new Book(title, author, pages, read);
+
+  // Add the new book to the Library array
+  myLibrary.push(book);
 }
   
 function refreshBooks() {
@@ -48,6 +56,12 @@ function refreshBooks() {
   });
 }
 
+addBookToLibrary("The Hobbit", "JK Rowling", 310, "Yes");
+addBookToLibrary("The Alchemist", "Paul Coelho", 267, "No");
+addBookToLibrary("A Tale of Two Cities", "Charles Dickens", 200, "No");
+addBookToLibrary("The Little Prince", "Antoine de Saint-Exupéry", 197, "No");
+addBookToLibrary("The Little Prince", "Antoine de Saint-Exupéry", 197, "No");
+// console.log(myLibrary);
 refreshBooks();
 
 /* Pseudocode

@@ -7,6 +7,7 @@
 :root {
     --card-bg: white;
     --pd-base: 30px;
+    --element-gaps: 40px;
 }
 
 .main {
@@ -17,6 +18,7 @@
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--element-gaps);
     padding: var(--pd-base);
 }
 
