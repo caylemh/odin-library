@@ -25,7 +25,7 @@ function refreshBooks() {
     document.querySelector(".card-container").innerHTML += `
       <div class="card" data-id="${book.id}">
         <div id="details">
-          <h2>${book.title}</h2>
+          <h1>${book.title}</h1>
           <h4>${book.author}</h4>
           <p>${book.pages}</p>
           <p>${book.read}</p>
