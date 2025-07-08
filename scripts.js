@@ -1,22 +1,5 @@
 const myLibrary = [];
 
-// Dummy Data
-/*
-[
-  {id: 123456,
-    title: "The Hobbit",
-    author: "JK Rowling",
-    pages: 310,
-    read: "Yes",
-  },
-  {id: 112345,
-    title: "The Alchemist",
-    author: "Paulo Coelho",
-    pages: 210,
-    read: "No",
-  },
-] */
-
 function Book(title, author, pages, read){
     if(!new.target){
         throw Error("You must use the 'new' operator before calling this constructor.");
@@ -41,20 +24,25 @@ function refreshBooks() {
     console.log(book)
     document.querySelector(".card-container").innerHTML += `
       <div class="card" data-id="${book.id}">
-          <div id="details">
-            <h2>${book.title}</h2>
-            <h4>${book.author}</h4>
-            <p>${book.pages}</p>
-            <p>${book.read}</p>
-          </div>
-          <div id="buttons">
-            <button>Delete?</button>
-            <button>Read?</button>
-          </div>
+        <div id="details">
+          <h2>${book.title}</h2>
+          <h4>${book.author}</h4>
+          <p>${book.pages}</p>
+          <p>${book.read}</p>
+        </div>
+        <div id="btnContainer">
+          <button>Delete?</button>
+          <button>Read?</button>
+        </div>
       </div>
     `;
   });
 }
+
+// Button to open Modal
+document.querySelector("#addBookBtn").addEventListener("click", () => {
+  document.querySelector("dialog").showModal();
+});
 
 addBookToLibrary("The Hobbit", "JK Rowling", 310, "Yes");
 addBookToLibrary("The Alchemist", "Paul Coelho", 267, "No");

@@ -8,16 +8,50 @@
     --card-bg: white;
     --pd-base: 30px;
     --element-gaps: 40px;
+    --btn-color: orange;
 }
 
 .main {
+    height: 100vh;
+    width: 100%;
     padding: var(--pd-base);
-    /* text-align: center; */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: var(--element-gaps);
+    padding: var(--pd-base);
+    height: 40px;
+}
+
+dialog {
+    width: 40%;
+    height: 60%;
+    background-color: white;
+    box-shadow: 0 0 10px gray;
+    border: none;
+    border-radius: 10px;
+}
+
+#modal-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    position: relative;
+}
+
+dialog::backdrop {
+    background-color: black;
+    opacity: 60%;
 }
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: var(--element-gaps);
     padding: var(--pd-base);
 }
@@ -30,8 +64,8 @@
 
     border-radius: 10px;
     padding: var(--pd-base);
-    width: 350px;
-    height: 300px;
+    width: 450px;
+    height: 200px;
 }
 
 #details {
@@ -39,7 +73,29 @@
     justify-content: start;
 }
 
-#buttons button {
-    width: 80px;
+#btnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--element-gaps);
+    padding: 10px 0;
+}
+
+button {
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--btn-color);
+    width: 100px;
+    height: 40px;
     padding: 5px;
+}
+
+button:hover {
+    box-shadow: 0 2px 5px gray;
+    cursor: pointer;
+}
+
+button:active {
+    color: lightgray;
 }
