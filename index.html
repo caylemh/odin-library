@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <div class="main" role="main">
+    <div class="container" role="main">
         <div class="header">
             <h1>ODIN Library</h1>
             <button id="addBookBtn">Add a Book</button>
@@ -16,14 +16,32 @@
         <div class="card-container">
             <!-- Book Container -->
         </div>
+    </div>
 
-        <!-- Dialog Modal -->
+    <!-- Dialog Modal -->
         <dialog>
             <div id="modal-container">
-                <h1>I am a Modal</h1>
+                <img id="closeBtn" formmethod="dialog" src="./assets/images/close.svg" alt="close-icon" style="width: 30px;">
+                <h1>Add a New Book</h1>
+                <div id="form-container">
+                    <form method="dialog">
+                        <label for="title">Book Title:
+                            <input type="text" name="title" id="title" required>
+                        </label>
+                        <label for="author">Book Author:
+                            <input type="text" name="author" id="author" required>
+                        </label>
+                        <label for="pages">Number of Pages:
+                            <input type="text" name="pages" id="pages">
+                        </label>
+                        <label for="read">Read?:
+                            <input type="text" name="read" id="read">
+                        </label>
+                        <button>Create Book</button>
+                    </form>
+                </div>
             </div>
         </dialog>
-    </div>
 
     <script src="./scripts.js"></script>
 </body>
