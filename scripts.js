@@ -1,4 +1,8 @@
 const myLibrary = [];
+const dialog = document.querySelector("dialog");
+const cardContainer = document.querySelector(".card-container");
+const addBookBtn = document.querySelector("#addBookBtn");
+const closeBtn = document.querySelector("#closeBtn");
 
 function Book(title, author, pages, read){
     if(!new.target){
@@ -22,13 +26,13 @@ function addBookToLibrary(title, author, pages, read) {
 function refreshBooks() {
   myLibrary.forEach(book => {
     console.log(book)
-    document.querySelector(".card-container").innerHTML += `
+    cardContainer.innerHTML += `
       <div class="card" data-id="${book.id}">
         <div id="details">
           <h1>${book.title}</h1>
           <h4>${book.author}</h4>
-          <p>${book.pages}</p>
-          <p>${book.read}</p>
+          <p>Pages:  ${book.pages}</p>
+          <p>Read?  ${book.read}</p>
         </div>
         <div id="btnContainer">
           <button>Delete?</button>
@@ -40,8 +44,14 @@ function refreshBooks() {
 }
 
 // Button to open Modal
-document.querySelector("#addBookBtn").addEventListener("click", () => {
-  document.querySelector("dialog").showModal();
+addBookBtn.addEventListener("click", () => {
+  dialog.showModal();
+  console.log(dialog.returnValue);
+});
+
+// Button to close Modal
+closeBtn.addEventListener("click", () => {
+  dialog.close();
 });
 
 addBookToLibrary("The Hobbit", "JK Rowling", 310, "Yes");
