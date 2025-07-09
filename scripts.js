@@ -1,8 +1,18 @@
 const myLibrary = [];
+
 const dialog = document.querySelector("dialog");
 const cardContainer = document.querySelector(".card-container");
 const addBookBtn = document.querySelector("#addBookBtn");
 const closeBtn = document.querySelector("#closeBtn");
+const createBookBtn = document.querySelector("#createBook");
+const bookForm = document.querySelector("#bookForm");
+const deleteBtn = document.querySelector("#deleteBtn");
+
+//Book variables
+const inputTitle = document.querySelector("#title");
+const inputAuthor = document.querySelector("#author");
+const inputPages = document.querySelector("#pages");
+const inputRead = document.querySelector("#read");
 
 function Book(title, author, pages, read){
     if(!new.target){
@@ -23,11 +33,10 @@ function addBookToLibrary(title, author, pages, read) {
   myLibrary.push(book);
 }
   
-function refreshBooks() {
+function addBooksToPage() {
   myLibrary.forEach(book => {
-    console.log(book)
     cardContainer.innerHTML += `
-      <div class="card" data-id="${book.id}">
+      <div class="card">
         <div id="details">
           <h1>${book.title}</h1>
           <h4>${book.author}</h4>
@@ -35,18 +44,18 @@ function refreshBooks() {
           <p>Read?  ${book.read}</p>
         </div>
         <div id="btnContainer">
-          <button>Delete?</button>
+          <button id="deleteBtn" value="${book.id}">Delete?</button>
           <button>Read?</button>
         </div>
       </div>
     `;
   });
+  console.log(myLibrary)
 }
 
 // Button to open Modal
 addBookBtn.addEventListener("click", () => {
   dialog.showModal();
-  console.log(dialog.returnValue);
 });
 
 // Button to close Modal
@@ -54,14 +63,29 @@ closeBtn.addEventListener("click", () => {
   dialog.close();
 });
 
-addBookToLibrary("The Hobbit", "JK Rowling", 310, "Yes");
-addBookToLibrary("The Alchemist", "Paul Coelho", 267, "No");
-addBookToLibrary("A Tale of Two Cities", "Charles Dickens", 200, "No");
-addBookToLibrary("The Little Prince", "Antoine de Saint-Exupéry", 197, "No");
-addBookToLibrary("The Little Prince", "Antoine de Saint-Exupéry", 197, "No");
-// console.log(myLibrary);
-refreshBooks();
+// Create a Book and add to the myLibrary array
+createBookBtn.addEventListener("click", (event) => {
+  event.preventDefault();
 
-/* Pseudocode
+  //Reset the Card Container
+  cardContainer.innerHTML = "";
 
-*/
+  // Create the new Book
+  addBookToLibrary(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.value);
+  
+  // Add the array top the Page
+  addBooksToPage();
+
+  // Reset the form for new input
+  bookForm.reset();
+
+  // close the Modal
+  dialog.close();
+});
+
+// addBookToLibrary("The Hobbit", "JK Rowling", 310, "Yes");
+// addBookToLibrary("The Alchemist", "Paul Coelho", 267, "No");
+// addBookToLibrary("A Tale of Two Cities", "Charles Dickens", 200, "No");
+// addBookToLibrary("The Little Prince", "Antoine de Saint-Exupéry", 197, "No");
+// addBookToLibrary("Pride and Prejudice", "Jane Austen", 327, "No");
+// addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 301, "No");
