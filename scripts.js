@@ -6,13 +6,21 @@ const addBookBtn = document.querySelector("#addBookBtn");
 const closeBtn = document.querySelector("#closeBtn");
 const createBookBtn = document.querySelector("#createBook");
 const bookForm = document.querySelector("#bookForm");
-const deleteBtn = document.querySelector("#deleteBtn");
 
 //Book variables
 const inputTitle = document.querySelector("#title");
 const inputAuthor = document.querySelector("#author");
 const inputPages = document.querySelector("#pages");
 const inputRead = document.querySelector("#read");
+
+// function to make an element from HTML
+function elementFromHtml(html) {
+  const template = document.createElement("template");
+
+  template.innerHTML = html.trim();
+
+  return template.content.firstElementChild;
+}
 
 function Book(title, author, pages, read){
     if(!new.target){
@@ -35,7 +43,9 @@ function addBookToLibrary(title, author, pages, read) {
   
 function addBooksToPage() {
   myLibrary.forEach(book => {
-    cardContainer.innerHTML += `
+    const btnNumber =  myLibrary.indexOf(book);
+
+    const bookCard = elementFromHtml(`
       <div class="card">
         <div id="details">
           <h1>${book.title}</h1>
@@ -44,13 +54,36 @@ function addBooksToPage() {
           <p>Read?  ${book.read}</p>
         </div>
         <div id="btnContainer">
-          <button id="deleteBtn" value="${book.id}">Delete?</button>
+          <button id="deleteBtn${btnNumber}">Delete?</button>
           <button>Read?</button>
         </div>
       </div>
-    `;
+    `);
+
+    cardContainer.appendChild(bookCard);
+
+    //Deleting a book from the library
+    document.querySelector(`#deleteBtn${btnNumber}`).addEventListener("click", () => {
+      deleteBook(book.id);
+    });
   });
   console.log(myLibrary)
+}
+
+// Delete books from library
+function deleteBook(id) {
+  myLibrary.forEach(book => {
+    const bookId = myLibrary.indexOf(book);
+    if (book.id === id) {
+      myLibrary.splice(bookId,1);
+    }
+  });
+
+  //Clear the Card Container
+  cardContainer.textContent = "";
+
+  //Add the cards to the page again
+  addBooksToPage();
 }
 
 // Button to open Modal
@@ -64,8 +97,8 @@ closeBtn.addEventListener("click", () => {
 });
 
 // Create a Book and add to the myLibrary array
-createBookBtn.addEventListener("click", (event) => {
-  event.preventDefault();
+createBookBtn.addEventListener("click", function(e) {
+  e.preventDefault();
 
   //Reset the Card Container
   cardContainer.innerHTML = "";
@@ -89,3 +122,4 @@ createBookBtn.addEventListener("click", (event) => {
 // addBookToLibrary("The Little Prince", "Antoine de Saint-Exupéry", 197, "No");
 // addBookToLibrary("Pride and Prejudice", "Jane Austen", 327, "No");
 // addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 301, "No");
+// addBooksToPage();
