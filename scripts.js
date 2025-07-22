@@ -20,7 +20,7 @@ function elementFromHtml(html) {
   template.innerHTML = html.trim();
 
   return template.content.firstElementChild;
-}
+};
 
 function Book(title, author, pages, read){
     if(!new.target){
@@ -31,7 +31,21 @@ function Book(title, author, pages, read){
     this.author = author;
     this.pages = pages;
     this.read = read;
-}
+};
+
+Book.prototype.isBookRead = function(book) {
+  if (book.read == "No") {
+    book.read = "Yes";
+  } else if(book.read == "Yes"){
+    book.read = "No";
+  }
+
+  //Clear the Card Container
+  cardContainer.textContent = "";
+
+  //Add the cards to the page again
+  addBooksToPage();
+};
 
 function addBookToLibrary(title, author, pages, read) {
   // Create a new Book object
@@ -43,7 +57,7 @@ function addBookToLibrary(title, author, pages, read) {
   
 function addBooksToPage() {
   myLibrary.forEach(book => {
-    const btnNumber =  myLibrary.indexOf(book);
+    const count =  myLibrary.indexOf(book);
 
     const bookCard = elementFromHtml(`
       <div class="card">
@@ -51,11 +65,11 @@ function addBooksToPage() {
           <h1>${book.title}</h1>
           <h4>${book.author}</h4>
           <p>Pages:  ${book.pages}</p>
-          <p>Read?  ${book.read}</p>
+          <p>Read It? <span id="readColor${count}">${book.read}</span></p>
         </div>
         <div id="btnContainer">
-          <button id="deleteBtn${btnNumber}">Delete?</button>
-          <button>Read?</button>
+          <button id="deleteBtn${count}">Delete?</button>
+          <button id="readBtn${count}">Read Toggle</button>
         </div>
       </div>
     `);
@@ -63,11 +77,14 @@ function addBooksToPage() {
     cardContainer.appendChild(bookCard);
 
     //Deleting a book from the library
-    document.querySelector(`#deleteBtn${btnNumber}`).addEventListener("click", () => {
+    document.querySelector(`#deleteBtn${count}`).addEventListener("click", () => {
       deleteBook(book.id);
     });
+
+    document.querySelector(`#readBtn${count}`).addEventListener("click", () => {
+      book.isBookRead(book);
+    });
   });
-  console.log(myLibrary)
 }
 
 // Delete books from library
@@ -75,7 +92,9 @@ function deleteBook(id) {
   myLibrary.forEach(book => {
     const bookId = myLibrary.indexOf(book);
     if (book.id === id) {
-      myLibrary.splice(bookId,1);
+      if(confirm("Are you sure you want to delete?")) {
+        myLibrary.splice(bookId,1);
+      }
     }
   });
 
@@ -115,11 +134,3 @@ createBookBtn.addEventListener("click", function(e) {
   // close the Modal
   dialog.close();
 });
-
-// addBookToLibrary("The Hobbit", "JK Rowling", 310, "Yes");
-// addBookToLibrary("The Alchemist", "Paul Coelho", 267, "No");
-// addBookToLibrary("A Tale of Two Cities", "Charles Dickens", 200, "No");
-// addBookToLibrary("The Little Prince", "Antoine de Saint-Exupéry", 197, "No");
-// addBookToLibrary("Pride and Prejudice", "Jane Austen", 327, "No");
-// addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 301, "No");
-// addBooksToPage();
