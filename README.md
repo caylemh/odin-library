@@ -21,7 +21,7 @@ This is a solution to the [Project: ODIN Library Solution from The ODIN Project]
 
 ### Links
 
-- Live Site URL: [https://caylemh.github.io/odin-library/](https://caylemh.github.io/odin-library/){:target="_blank"}
+- Live Site URL: [https://caylemh.github.io/odin-library/](https://caylemh.github.io/odin-library/)
 
 ## My process
 
