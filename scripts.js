@@ -54,9 +54,11 @@ function handleFormSubmission(event) {
 function createBookCard(book) {
   const bookCard = elementFromHtml(`
     <div class="card" data-id="${book.id}">
-      <div id="details">
+      <div id="bookTitle">
         <h1>${book.title}</h1>
         <h4>${book.author}</h4>
+      </div>
+      <div id="details">
         <p>Pages: ${book.pages}</p>
         <p>Read It? <span class="read-status">${book.read}</span></p>
       </div>

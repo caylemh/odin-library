@@ -151,3 +151,9 @@ button:active {
 #details p span {
     font-weight: bold;
 }
+
+#bookTitle {
+    background-image: linear-gradient(orange 20%, rgba(255, 165, 0, 0) 80%);
+    padding: 10px;
+    border-radius: 10px 10px;
+}
